@@ -1,0 +1,194 @@
+<section class="I1 overflow-hidden">
+  <div class="sidenavpro navbar-vertical fixed-left navbar-expand-xs"></div>
+  <div class="main-content">
+    <div class="w-100vh h-10">
+      <div class="h-12vh"></div>
+    </div>
+    <div class="w-100vh h-90 bg-container">
+      <div class="container-fluid bg-container">
+        <div class="row">
+          <!-- Student -->
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="table-wrapper">
+                      <h1>TutoFast | Students</h1>
+                      <h2>{{isEditMode ? 'Edit Student' : 'Add new Student'}}</h2>
+                      <form (submit)="onSubmit()" #studentForm="ngForm">
+                        <mat-form-field>
+                          <input matInput placeholder="Username" name="username" required [(ngModel)]="StudentData.username">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Password" name="password" required [(ngModel)]="StudentData.password">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Name" name="name" required [(ngModel)]="StudentData.name">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Last Name" name="lastname" required [(ngModel)]="StudentData.lastname">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="DNI" name="dni" required [(ngModel)]="StudentData.dni">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Birthday" name="birthday" required [(ngModel)]="StudentData.birthday">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Email" name="email" required [(ngModel)]="StudentData.email">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Phone" name="phone" required [(ngModel)]="StudentData.phone">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Address" name="address" required [(ngModel)]="StudentData.adress">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Age" name="age" required [(ngModel)]="StudentData.age">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                          <input matInput placeholder="SchoolLevel" name="schoolLevel" required [(ngModel)]="StudentData.schoolLevel">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="SchoolGrade" name="schoolGrade" required [(ngModel)]="StudentData.schoolGrade">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Photo" name="photo" required [(ngModel)]="StudentData.photo">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="District" name="district" required [(ngModel)]="StudentData.district">
+                        </mat-form-field>
+                        <ng-container *ngIf="isEditMode; else elseTemplate">
+                          <button mat-button color="primary">Update</button>
+                          <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                          <button mat-button color="primary">Add</button>
+                        </ng-template>
+                      </form>
+                    </div>
+                    <div class="table-responsive">
+                      <table mat-table [dataSource]="Student" class="mat-elevation-z8 table align-items-center table-flush">
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef> Id </th>
+                          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                        </ng-container>
+
+                        <!-- Username Column -->
+                        <ng-container matColumnDef="username">
+                          <th mat-header-cell *matHeaderCellDef> Username </th>
+                          <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                        </ng-container>
+
+                        <!-- Password Column -->
+                        <ng-container matColumnDef="password">
+                          <th mat-header-cell *matHeaderCellDef> Password </th>
+                          <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef> Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+
+                        <!-- Lastname Column -->
+                        <ng-container matColumnDef="lastname">
+                          <th mat-header-cell *matHeaderCellDef> Lastname </th>
+                          <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                        </ng-container>
+
+                        <!-- DNI Column -->
+                        <ng-container matColumnDef="dni">
+                          <th mat-header-cell *matHeaderCellDef> DNI </th>
+                          <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+                        </ng-container>
+
+                        <!-- Birthday Column -->
+                        <ng-container matColumnDef="birthday">
+                          <th mat-header-cell *matHeaderCellDef> Birthday </th>
+                          <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+                        </ng-container>
+
+                        <!-- Email Column -->
+                        <ng-container matColumnDef="email">
+                          <th mat-header-cell *matHeaderCellDef> Email </th>
+                          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+
+                        <!-- Phone Column -->
+                        <ng-container matColumnDef="phone">
+                          <th mat-header-cell *matHeaderCellDef> Phone </th>
+                          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                        </ng-container>
+
+                        <!-- Address Column -->
+                        <ng-container matColumnDef="adress">
+                          <th mat-header-cell *matHeaderCellDef> Address </th>
+                          <td mat-cell *matCellDef="let element"> {{element.adress}} </td>
+                        </ng-container>
+
+                        <!-- Age Column -->
+                        <ng-container matColumnDef="age">
+                          <th mat-header-cell *matHeaderCellDef> Age </th>
+                          <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+                        </ng-container>
+
+                        <!-- SchoolLevel Column -->
+                        <ng-container matColumnDef="schoolLevel">
+                          <th mat-header-cell *matHeaderCellDef> SchoolLevel </th>
+                          <td mat-cell *matCellDef="let element"> {{element.schoolLevel.name}} </td>
+                        </ng-container>
+
+                        <!-- SchoolGrade Column -->
+                        <ng-container matColumnDef="schoolGrade">
+                          <th mat-header-cell *matHeaderCellDef> SchoolGrade </th>
+                          <td mat-cell *matCellDef="let element"> {{element.schoolGrade.name}} </td>
+                        </ng-container>
+
+                        <!-- Photo Column -->
+                        <ng-container matColumnDef="photo">
+                          <th mat-header-cell *matHeaderCellDef> Photo </th>
+                          <td mat-cell *matCellDef="let element"> {{element.photo.id}} </td>
+                        </ng-container>
+
+                        <!-- Category Column -->
+                        <ng-container matColumnDef="category">
+                          <th mat-header-cell *matHeaderCellDef> Category </th>
+                          <td mat-cell *matCellDef="let element"> {{element.category.name}} </td>
+                        </ng-container>
+
+                        <!-- District Column -->
+                        <ng-container matColumnDef="district">
+                          <th mat-header-cell *matHeaderCellDef> District </th>
+                          <td mat-cell *matCellDef="let element"> {{element.district.name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="actions">
+                          <th mat-header-cell *matHeaderCellDef> Actions </th>
+                          <td mat-cell *matCellDef="let element">
+                            <a href="javascript:void(0)" (click)="editItem(element)">Edit</a> |
+                            <a href="javascript:void(0)" (click)="deleteItem(element.id)">Delete</a>
+                          </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            [ngClass]="{ 'editable-row': StudentData.id == row.id}"></tr>
+                      </table>
+                    </div>
+                    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]"
+                                   showFirstLastButtons></mat-paginator>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

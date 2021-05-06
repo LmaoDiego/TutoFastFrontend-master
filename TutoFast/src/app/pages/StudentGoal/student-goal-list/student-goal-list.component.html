@@ -1,0 +1,94 @@
+<section class="I1 overflow-hidden">
+  <div class="sidenavpro navbar-vertical fixed-left navbar-expand-xs"></div>
+  <div class="main-content">
+    <div class="w-100vh h-10">
+      <div class="h-12vh"></div>
+    </div>
+    <div class="w-100vh h-90 bg-container">
+      <div class="container-fluid bg-container">
+        <div class="row">
+          <!-- StudentGoal -->
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-body bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <div class="table-wrapper">
+                      <h1>TutoFast | StudentGoals</h1>
+                      <h2>{{isEditMode ? 'Edit StudentGoal' : 'Add new StudentGoal'}}</h2>
+                      <form (submit)="onSubmit()" #studentGoalForm="ngForm">
+                        <mat-form-field>
+                          <input matInput placeholder="Statement" name="statement" required [(ngModel)]="StudentGoalData.statement">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Evaluation" name="evaluation" required [(ngModel)]="StudentGoalData.evaluation">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="OutcomeReport" name="outcomeReport" required [(ngModel)]="StudentGoalData.outcomeReport">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Subject" name="subject" required [(ngModel)]="StudentGoalData.subject">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input matInput placeholder="Session" name="session" required [(ngModel)]="StudentGoalData.session">
+                        </mat-form-field>
+                        <ng-container *ngIf="isEditMode; else elseTemplate">
+                          <button mat-button color="primary">Update</button>
+                          <button mat-button color="warn" (click)="cancelEdit()">Cancel</button>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                          <button mat-button color="primary">Add</button>
+                        </ng-template>
+                      </form>
+                    </div>
+                    <div class="table-responsive">
+                      <table mat-table [dataSource]="StudentGoal" class="mat-elevation-z8 table align-items-center table-flush">
+                        <ng-container matColumnDef="id">
+                          <th mat-header-cell *matHeaderCellDef> #Id </th>
+                          <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="statement">
+                          <th mat-header-cell *matHeaderCellDef> Statement </th>
+                          <td mat-cell *matCellDef="let element"> {{ element.statement }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="evaluation">
+                          <th mat-header-cell *matHeaderCellDef> Evaluation </th>
+                          <td mat-cell *matCellDef="let element"> {{ element.evaluation }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="outcomeReport">
+                          <th mat-header-cell *matHeaderCellDef> OutcomeReport </th>
+                          <td mat-cell *matCellDef="let element"> {{ element.outcomeReport.id }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="subject">
+                          <th mat-header-cell *matHeaderCellDef> Subject </th>
+                          <td mat-cell *matCellDef="let element"> {{ element.subject.name }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="session">
+                          <th mat-header-cell *matHeaderCellDef> Session </th>
+                          <td mat-cell *matCellDef="let element"> {{ element.session.id }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="actions">
+                          <th mat-header-cell *matHeaderCellDef> Actions </th>
+                          <td mat-cell *matCellDef="let element">
+                            <a href="javascript:void(0)" (click)="editItem(element)">Edit</a> |
+                            <a href="javascript:void(0)" (click)="deleteItem(element.id)">Delete</a>
+                          </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            [ngClass]="{ 'editable-row': StudentGoalData.id == row.id}"></tr>
+                      </table>
+                    </div>
+                    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]"
+                                   showFirstLastButtons></mat-paginator>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
